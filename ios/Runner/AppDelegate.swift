@@ -1,0 +1,21 @@
+import Flutter
+import UIKit
+import React
+
+@main
+@objc class AppDelegate: FlutterAppDelegate {
+  override func application(
+    _ application: UIApplication,
+    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+  ) -> Bool {
+    GeneratedPluginRegistrant.register(with: self)
+
+    guard let pluginRegistrar = self.registrar(forPlugin: "ReactNativePlugin") else { return false }
+    let factory = ReactNativeViewFactory(messenger: pluginRegistrar.messenger())
+    pluginRegistrar.register(
+        factory,
+        withId: "ReactNativeView")
+
+    return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+  }
+}
